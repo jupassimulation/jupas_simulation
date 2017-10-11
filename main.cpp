@@ -23,10 +23,12 @@ void init(){
     }
 }
 
+int s_programs[students_size];
+vector<int>::iterator pointer[departments_size];
 void G_S(vector<student> students, vector<department> departments){
-    int s_programs[students_size] = {};
     int freeCount = departments_size;
-
+    memset(s_programs,0,sizeof(s_programs));
+    for(int i=0;i<departments_size;i++)pointer[i]=departments[i].preference.begin();
     while (freeCount > 0) {
         vector<department>::iterator d;
         for (vector<department>::iterator it = departments.begin() ; it != departments.end(); ++it) {
@@ -35,8 +37,8 @@ void G_S(vector<student> students, vector<department> departments){
                 break;
             }
         }
-        
-        for (vector<int>::iterator it = d->preference.begin() ; it != d->preference.end(); ++it) {
+        #define it pointer[d->id-1]
+        for (; it != d->preference.end(); ++it) {
             
             if (s_programs[*it-1] == 0) {
                 s_programs[*it-1] = d->id;
@@ -47,7 +49,7 @@ void G_S(vector<student> students, vector<department> departments){
                 }
             }
             else {
-                if ((find(students[*it-1].preference.begin(),students[*it-1].preference.end(),d->id)-students[*it-1].preference.begin())<(find(students[*it-1].preference.begin(),students[*it-1].preference.end(),s_programs)-students[*it-1].preference.begin())) {
+                if (students[*it-1].rank[d->id]<students[*it-1].rank[s_programs]){
                     s_programs[*it-1] = d->id;
                     d->capacity--;
                     if (d->capacity == 0) {
@@ -57,6 +59,7 @@ void G_S(vector<student> students, vector<department> departments){
                 }
             }
         }
+        #undef it
     }
 }
 
