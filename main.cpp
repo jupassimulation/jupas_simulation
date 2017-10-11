@@ -51,7 +51,7 @@ void G_S(vector<student> students, vector<department> departments){
                 }
             }
             else {
-                if (students[*it-1].rank[d->id]<students[*it-1].rank[s_programs]){
+                if (students[*it-1].rank[d->id]<students[*it-1].rank[s_programs[*it-1]]){
                     s_programs[*it-1] = d->id;
                     d->capacity--;
                     if (d->capacity == 0) {
