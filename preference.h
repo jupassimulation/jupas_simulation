@@ -2,8 +2,6 @@
 #define PREFERENCE_H_
 
 #include "header.h"
-#include "student.h"
-#include "department.h"
 #include <vector>
 
 using std::vector;

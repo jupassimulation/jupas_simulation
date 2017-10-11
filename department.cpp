@@ -1,4 +1,5 @@
 #include "department.h"
+
 department::department(int Id,int cap,departmentpre *p):capacity(cap),id(Id),dp(p){
 }
 

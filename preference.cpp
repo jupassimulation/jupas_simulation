@@ -1,7 +1,10 @@
 #include "preference.h"
+#include "student.h"
+#include "department.h"
 #include <cstdlib>
 #include <ctime>
 #include <algorithm>
+
 
 using std::random_shuffle;
 
