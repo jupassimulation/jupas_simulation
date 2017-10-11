@@ -26,6 +26,9 @@ void departmentpre::dp(const vector<student> &stu,vector<int> &qua){
 }
 
 departmentpre::departmentpre(departmentcmp *c):cmp(c){}
+departmentpre::departmentpre(const departmentpre &A){
+    cmp=new departmentcmp;*cmp=*A.cmp;
+}
 departmentpre::~departmentpre(){delete cmp;}
 
 bool departmentcmp::operator()(const student &A,const student& B){

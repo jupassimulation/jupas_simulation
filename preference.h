@@ -21,6 +21,7 @@ struct departmentcmp{
 struct departmentpre{
     departmentcmp *cmp;
     departmentpre(departmentcmp *c=new departmentcmp);
+    departmentpre(const departmentpre &);
     virtual void dp(const vector<student>&,vector<int> &);
     virtual ~departmentpre();
 };

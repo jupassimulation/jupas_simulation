@@ -21,6 +21,9 @@ void init(){
     for(int id=1;id<=students_size;id++){
         students.push_back(student(id));
     }
+    for(int i=0;i<students.size();i++){
+        cout<<students[i].id<<" ";
+    }cout<<endl;
     for(int id=1;id<=departments_size;id++){
         departments.push_back(department(id,departments_cap));
     }
