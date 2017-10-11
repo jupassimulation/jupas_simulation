@@ -1,6 +1,7 @@
 #include "student.h"
 student::student(int Id,studentquality sq, studentpre *p):id(Id),sp(p){
     sq.sq(quality);
+    std::cout<<"this is a stu "<<id<<std::endl;
 }
 
 student::student(const student& A):quality(A.quality),preference(A.preference),id(A.id),sp(A.sp){

@@ -1,6 +1,7 @@
 #include "department.h"
 
-department::department(int Id,int cap,departmentpre *p):capacity(cap),id(Id),dp(p){
+department::department(int Id,int cap,departmentpre *p):capacity(cap),id(Id),dp(p){    
+    std::cout<<"this is a dept "<<id<<" "<<cap<<std::endl;
 }
 
 department::department(const department& A):preference(A.preference),id(A.id),capacity(A.capacity),dp(A.dp){

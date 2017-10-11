@@ -8,4 +8,6 @@ struct departmentpre;
 class department;
 class student;
 
+#include <iostream>
+
 #endif
