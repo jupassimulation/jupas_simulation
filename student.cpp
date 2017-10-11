@@ -4,11 +4,14 @@ student::student(int Id,studentquality sq, studentpre *p):id(Id),sp(p){
     std::cout<<"this is a stu "<<id<<std::endl;
 }
 
-student::student(const student& A):quality(A.quality),preference(A.preference),id(A.id),sp(A.sp){
+student::student(const student& A):quality(A.quality),preference(A.preference),id(A.id){
+    sp=new studentpre;*sp=*A.sp;
 }
 
 void student::set_preference(const vector<department>& departments){
+    std::cout<<"setting stu pre for stu "<<id<<std::endl;
     sp->sp(quality,departments,preference);
+    std::cout<<"setting stu ran for stu "<<id<<std::endl;
     rank.resize(preference.size()+1);
     for(int i=0;i<preference.size();i++){
         rank[preference[i]]=i;
