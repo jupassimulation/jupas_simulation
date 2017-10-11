@@ -2,6 +2,8 @@
 #include "preference.h"
 #include "student.h"
 
+#include <cstring>
+
 using namespace std;
 
 const int students_size=100;
@@ -37,7 +39,7 @@ void G_S(vector<student> students, vector<department> departments){
                 break;
             }
         }
-        #define it pointer[d->id-1]
+        #define it (pointer[d->id-1])
         for (; it != d->preference.end(); ++it) {
             
             if (s_programs[*it-1] == 0) {

@@ -13,6 +13,7 @@ public:
     int id;
     vector<int> quality;
     vector<int> preference;
+    vector<int> rank;
     studentpre *sp;
 
     student(int Id,studentquality sq=studentquality(),studentpre *p=new studentpre);

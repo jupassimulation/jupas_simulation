@@ -8,6 +8,10 @@ student::student(const student& A):quality(A.quality),preference(A.preference),i
 
 void student::set_preference(const vector<department>& departments){
     sp->sp(quality,departments,preference);
+    rank.resize(preference.size()+1);
+    for(int i=0;i<preference.size();i++){
+        rank[preference[i]]=i;
+    }
 }
 
 /*void student::set_preference_func(void Preference_func(const vector<int>&,const vector<department>&,vector<int> &)){

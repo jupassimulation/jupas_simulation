@@ -14,7 +14,6 @@ public:
     int id;
     int capacity;
     vector<int> preference; 
-    vector<int> rank;
     departmentpre *dp;
     
     department(int Id,int cap,departmentpre *p=new departmentpre);
