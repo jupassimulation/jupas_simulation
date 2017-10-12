@@ -7,8 +7,8 @@
 
 using namespace std;
 
-const int students_size=2;
-const int departments_size=2;
+const int students_size=4;
+const int departments_size=4;
 const int departments_cap=1; // may be a vector
 
 vector<student> students;
@@ -21,11 +21,10 @@ void init(){
     for(int id=1;id<=students_size;id++){
         students.push_back(student(id));
     }
-    for(int i=0;i<students.size();i++){
-        cout<<students[i].id<<" ";
-    }cout<<endl;
+
     for(int id=1;id<=departments_size;id++){
         departments.push_back(department(id,departments_cap));
+        //cout << id << endl;
     }
     for(int id=1;id<=students_size;id++){
         students[id-1].set_preference(departments);
@@ -62,10 +61,10 @@ void G_S(/*vector<student> students, vector<department> departments*/){
             }
             else {
                 if (students[*it-1].rank[d->id]<students[*it-1].rank[s_programs[*it-1]]){
+                    departments[s_programs[*it-1]-1].capacity++;
                     s_programs[*it-1] = d->id;
                     d->capacity--;
                     if (d->capacity == 0) {
-                        freeCount--;
                         break;
                     }
                 }
@@ -79,8 +78,11 @@ int main(){
     init();
     cout<<"hello"<<endl;
     G_S();
-    for(int i=1;i<=students_size;i++){
+    for(int i=0;i<students_size;i++){
         cout<<s_programs[i]<<' ';
+    }
+    for(int i=0;i<departments_size;i++){
+        cout<<departments[i].id<< ' ' <<departments[i].capacity<<' ';
     }
     cout<<endl;
 }
