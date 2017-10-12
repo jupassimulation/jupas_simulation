@@ -5,7 +5,14 @@ student::student(int Id,studentquality sq, studentpre *p):id(Id),sp(p){
 }
 
 student::student(const student& A):quality(A.quality),preference(A.preference),id(A.id){
-    sp=new studentpre;*sp=*A.sp;
+    sp=new studentpre(*A.sp);
+}
+
+student& student::operator=(const student& A){
+    quality=A.quality,preference=A.preference; id=(A.id);
+    delete sp;    
+    sp=new studentpre(*A.sp);
+    return *this;
 }
 
 void student::set_preference(const vector<department>& departments){
@@ -16,6 +23,7 @@ void student::set_preference(const vector<department>& departments){
     for(int i=0;i<preference.size();i++){
         rank[preference[i]]=i;
     }
+    std::cout<<"finished for stu "<<id<<std::endl;
 }
 
 /*void student::set_preference_func(void Preference_func(const vector<int>&,const vector<department>&,vector<int> &)){

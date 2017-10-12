@@ -18,6 +18,7 @@ public:
 
     student(int Id,studentquality sq=studentquality(),studentpre *p=new studentpre);
     student(const student &);
+    student& operator=(const student&);
     ~student();
     void set_preference(const vector<department>&);
     //void set_preference_func(studentpre *p);
