@@ -7,9 +7,9 @@
 
 using namespace std;
 
-const int students_size=4;
-const int departments_size=4;
-const int departments_cap=1; // may be a vector
+const int students_size=100;
+const int departments_size=10;
+const int departments_cap=10; // may be a vector
 
 vector<student> students;
 vector<department> departments;
@@ -37,7 +37,7 @@ void init(){
 int s_programs[students_size];
 vector<int>::iterator pointer[departments_size];
 void G_S(/*vector<student> students, vector<department> departments*/){
-    int freeCount = departments_size;
+    int freeCount = students_size;
     memset(s_programs,0,sizeof(s_programs));
     for(int i=0;i<departments_size;i++)pointer[i]=departments[i].preference.begin();
     while (freeCount > 0) {
@@ -54,8 +54,8 @@ void G_S(/*vector<student> students, vector<department> departments*/){
             if (s_programs[*it-1] == 0) {
                 s_programs[*it-1] = d->id;
                 d->capacity--;
+                freeCount--;
                 if (d->capacity == 0) {
-                    freeCount--;
                     break;
                 }
             }
@@ -82,6 +82,7 @@ int main(){
         cout<<s_programs[i]<<' ';
     }
     for(int i=0;i<departments_size;i++){
+        cout << endl;
         cout<<departments[i].id<< ' ' <<departments[i].capacity<<' ';
     }
     cout<<endl;
