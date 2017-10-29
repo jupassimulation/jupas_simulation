@@ -1,6 +1,8 @@
 #include "student.h"
-student::student(int Id,studentquality sq, studentpre *p):id(Id),sp(p){
+student::student(int Id,studentquality sq):id(Id){
     sq.sq(quality);
+    sp=new studentpre;
+    assign=0;
     std::cout<<"this is a stu "<<id<<std::endl;
 }
 
@@ -26,10 +28,23 @@ void student::set_preference(const vector<department>& departments){
     std::cout<<"finished for stu "<<id<<std::endl;
 }
 
+int student::onpre(int a){
+    for(int i=0;i<preference.size();i++){
+        if(preference[i]==a) return i;
+    }
+    return -1;
+}
+
+bool student::prefer(int new_assign){
+    if(onpre(new_assign)<0)return 0;
+    if(onpre(assign)<0) return 1;
+    return onpre(new_assign)<onpre(assign);
+}
+
 /*void student::set_preference_func(void Preference_func(const vector<int>&,const vector<department>&,vector<int> &)){
     preference_func=Preference_func;
 }*/
-
+/*
 int student::get_quality(int ind)const{
     return quality[ind];
 }
@@ -37,7 +52,7 @@ int student::get_quality(int ind)const{
 int student::get_id()const{
     return id;
 }
-
+*/
 student::~student(){
     delete sp;
 }

@@ -15,12 +15,20 @@ struct studentquality{
 };
 
 struct departmentcmp{
+    vector<int> cutoff;
+    vector<double> coef;
+    int pre_req;
+    departmentcmp(vector<int> co,vector<double> ce,int r);
     virtual bool operator()(const student&,const student&);
 };
 
 struct departmentpre{
+    int id;
+    vector<int> cutoff;
+    vector<double> coef;
+    int pre_req;
     departmentcmp *cmp;
-    departmentpre(departmentcmp *c=new departmentcmp);
+    departmentpre(int i,vector<int> co,vector<double> ce,int r=20);
     departmentpre(const departmentpre &);
     virtual void dp(const vector<student>&,vector<int> &);
     virtual ~departmentpre();

@@ -13,17 +13,21 @@ public:
     int id;
     vector<int> quality;
     vector<int> preference;
-    vector<int> rank;
+    //vector<int> rank;
     studentpre *sp;
 
-    student(int Id,studentquality sq=studentquality(),studentpre *p=new studentpre);
+    int assign;
+
+    student(int Id,studentquality sq=studentquality());
     student(const student &);
     student& operator=(const student&);
     ~student();
+    bool prefer(int new_assign);
+    int onpre(int a);
     void set_preference(const vector<department>&);
     //void set_preference_func(studentpre *p);
-    int get_quality(int) const;
-    int get_id()const;
+    //int get_quality(int) const;
+    //int get_id()const;
 };
 /*
  class student{
