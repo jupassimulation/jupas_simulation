@@ -4,12 +4,13 @@
 
 #include <cstring>
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
-const int students_size=100;
-const int departments_size=10;
-const int departments_cap=10; // may be a vector
+int students_size;
+int departments_size;
+int quality_size=5;
 
 vector<student> students;
 vector<department> departments;
@@ -17,13 +18,20 @@ studentquality *sq=new studentquality;
 studentpre *sp=new studentpre;
 departmentpre *dp=new departmentpre;
 
+ifstream fin_stu("data/input/student.txt");
+ifstream fin_dept("data/input/department.txt");
+
+
 void init(){
+    fin_stu>>students_size;
+    int tmp;
     for(int id=1;id<=students_size;id++){
         students.push_back(student(id));
     }
 
     for(int id=1;id<=departments_size;id++){
-        departments.push_back(department(id,departments_cap));
+        fin_dept>>tmp
+        departments.push_back(department(id,tmp));
         //cout << id << endl;
     }
     for(int id=1;id<=students_size;id++){
