@@ -1,7 +1,7 @@
 #include "department.h"
 
-department::department(int Id,int cap,vector<int> cutoff,vector<double> coef,int pre_req=20):capacity(cap),id(Id){
-    dp = new departmentpre(cutofff,coef,pre_req);
+department::department(int Id,int cap,vector<int> cutoff,vector<double> coef,int pre_req):capacity(cap),id(Id){
+    dp = new departmentpre(Id,cutoff,coef,pre_req);
     std::cout<<"this is a dept "<<id<<" "<<cap<<std::endl;
 }
 

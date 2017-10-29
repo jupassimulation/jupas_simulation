@@ -22,8 +22,8 @@ public:
     student(const student &);
     student& operator=(const student&);
     ~student();
-    bool prefer(int new_assign);
-    int onpre(int a);
+    bool prefer(int new_assign) const;
+    int onpre(int a) const;
     void set_preference(const vector<department>&);
     //void set_preference_func(studentpre *p);
     //int get_quality(int) const;

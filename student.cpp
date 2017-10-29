@@ -21,21 +21,16 @@ void student::set_preference(const vector<department>& departments){
     std::cout<<"setting stu pre for stu "<<id<<std::endl;
     sp->sp(quality,departments,preference);
     std::cout<<"setting stu ran for stu "<<id<<std::endl;
-    rank.resize(preference.size()+1);
-    for(int i=0;i<preference.size();i++){
-        rank[preference[i]]=i;
-    }
-    std::cout<<"finished for stu "<<id<<std::endl;
 }
 
-int student::onpre(int a){
+int student::onpre(int a) const{
     for(int i=0;i<preference.size();i++){
         if(preference[i]==a) return i;
     }
     return -1;
 }
 
-bool student::prefer(int new_assign){
+bool student::prefer(int new_assign)const{
     if(onpre(new_assign)<0)return 0;
     if(onpre(assign)<0) return 1;
     return onpre(new_assign)<onpre(assign);

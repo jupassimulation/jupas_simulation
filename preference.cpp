@@ -42,14 +42,14 @@ departmentpre::departmentpre(int i,vector<int> co,vector<double> ce,int r):id(i)
     cmp=new departmentcmp(co,ce,r);
 }
 
-departmentpre::departmentpre(const departmentpre &A){
+departmentpre::departmentpre(const departmentpre &A):id(A.id),cutoff(A.cutoff),coef(A.coef),pre_req(A.pre_req){
     cmp=new departmentcmp(*A.cmp);
 }
 departmentpre::~departmentpre(){delete cmp;}
 
 
 
-departmentcmp::departmentcmp(vector<int> co,vector<double> ce,int r),cutoff(co),coef(ce),pre_req(r){
+departmentcmp::departmentcmp(vector<int> co,vector<double> ce,int r):cutoff(co),coef(ce),pre_req(r){
 }
 
 

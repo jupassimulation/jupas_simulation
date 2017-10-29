@@ -5,6 +5,8 @@
 #include <cstring>
 #include <iostream>
 #include <fstream>
+#include <cstdlib>
+#include <ctime>
 
 using namespace std;
 
@@ -14,16 +16,23 @@ int quality_size = 5;
 
 vector<student> students;
 vector<department> departments;
-studentquality *sq=new studentquality;
-studentpre *sp=new studentpre;
-departmentpre *dp=new departmentpre;
 
 ifstream fin_stu("data/input/student.txt");
 ifstream fin_dept("data/input/department.txt");
 
 void init(){
-    fin_stu >> students_size;
-    fin_dept >> departments_size;
+    if(!DEBUG){
+        fin_stu >> students_size;
+        fin_dept >> departments_size;
+    }
+    else{
+        students_size=4;
+        departments_size=2;
+    }
+    
+    
+    students.push_back(student(0));
+    departments.push_back(department(0,0,vector<int>(5,0),vector<double>(5,0)));
     for(int id=1;id<=students_size;id++){
         students.push_back(student(id));
     }
@@ -31,7 +40,8 @@ void init(){
     vector<int> co(5);
     vector<double> ce(5);
     for(int id=1;id<=departments_size;id++){
-        fin_dept >> tmp;
+        if(!DEBUG)fin_dept >> tmp;
+        else tmp=2;
         for(int i=0;i<5;i++){
             co[i]=rand()%8;
             ce[i]=(rand()%1000)/1000.0;
@@ -47,8 +57,8 @@ void init(){
     }
 }
 
-//int s_programs[students_size];
-vector<int>::iterator pointer[departments_size+1];
+//int s_programs[students_size];;
+vector< vector<int>::iterator > pointer;
 void G_S(/*vector<student> students, vector<department> departments*/){
     //    int total_capacity = 0;
     //    for (int i = 0; i < departments_size; i++) {
@@ -57,7 +67,8 @@ void G_S(/*vector<student> students, vector<department> departments*/){
     //    int free_count = departments_size;
     
     //    memset(s_programs,0,sizeof(s_programs));
-    for(int i=0;i<departments_size;i++)
+    pointer.resize(departments_size+1);
+    for(int i=1;i<departments_size+1;i++)
         pointer[i]=departments[i].preference.begin();
     while (true) {
         vector<department>::iterator d = departments.end();
@@ -85,6 +96,7 @@ void G_S(/*vector<student> students, vector<department> departments*/){
 }
 
 int main(){
+    srand(time(0));
     init();
     cout<<"hello"<<endl;
     G_S();

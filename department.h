@@ -16,7 +16,7 @@ public:
     vector<int> preference; 
     departmentpre *dp;
     
-    department(int Id,int cap);
+    department(int Id,int cap,vector<int> cutoff,vector<double> coef,int pre_req=20);
     department(const department &);
     void set_preference(const vector<student>&);
     ~department();
