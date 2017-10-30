@@ -6,13 +6,14 @@ student::student(int Id,studentquality sq):id(Id){
     std::cout<<"this is a stu "<<id<<std::endl;
 }
 
-student::student(const student& A):quality(A.quality),preference(A.preference),id(A.id){
+student::student(const student& A):quality(A.quality),preference(A.preference),id(A.id),assign(A.assign){
     sp=new studentpre(*A.sp);
 }
 
 student& student::operator=(const student& A){
     quality=A.quality,preference=A.preference; id=(A.id);
-    delete sp;    
+    delete sp;
+    assign=A.assign;
     sp=new studentpre(*A.sp);
     return *this;
 }
