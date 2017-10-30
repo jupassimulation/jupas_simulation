@@ -26,8 +26,8 @@ void init(){
         fin_dept >> departments_size;
     }
     else{
-        students_size=4;
-        departments_size=2;
+        students_size=6;
+        departments_size=3;
     }
     
     
@@ -68,11 +68,11 @@ void G_S(/*vector<student> students, vector<department> departments*/){
     
     //    memset(s_programs,0,sizeof(s_programs));
     pointer.resize(departments_size+1);
-    for(int i=1;i<departments_size+1;i++)
+    for(int i=0;i<departments_size+1;i++)
         pointer[i]=departments[i].preference.begin();
     while (true) {
         vector<department>::iterator d = departments.end();
-        for (vector<department>::iterator it = departments.begin() ; it != departments.end(); ++it) {
+        for (vector<department>::iterator it = departments.begin()+1 ; it != departments.end(); ++it) {
             if (it->capacity > 0 && pointer[it->id] != d->preference.end()) {
                 d = it;
                 break;
