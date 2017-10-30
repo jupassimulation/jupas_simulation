@@ -20,7 +20,6 @@ student& student::operator=(const student& A){
 void student::set_preference(const vector<department>& departments){
     std::cout<<"setting stu pre for stu "<<id<<std::endl;
     sp->sp(quality,departments,preference);
-    std::cout<<"setting stu ran for stu "<<id<<std::endl;
 }
 
 int student::onpre(int a) const{

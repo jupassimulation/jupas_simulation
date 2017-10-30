@@ -32,7 +32,7 @@ void init(){
     
     
     students.push_back(student(0));
-    departments.push_back(department(0,0,vector<int>(5,0),vector<double>(5,0)));
+    departments.push_back(department(0,0x7fffffff,vector<int>(5,0),vector<double>(5,0)));
     for(int id=1;id<=students_size;id++){
         students.push_back(student(id));
     }
@@ -43,17 +43,17 @@ void init(){
         if(!DEBUG)fin_dept >> tmp;
         else tmp=2;
         for(int i=0;i<5;i++){
-            co[i]=rand()%8;
+            co[i]=rand()%6;
             ce[i]=(rand()%1000)/1000.0;
         }
         departments.push_back(department(id,tmp,co,ce));
         //cout << id << endl;
     }
     for(int id=1;id<=students_size;id++){
-        students[id-1].set_preference(departments);
+        students[id].set_preference(departments);
     }
     for(int id=1;id<=departments_size;id++){
-        departments[id-1].set_preference(students);
+        departments[id].set_preference(students);
     }
 }
 

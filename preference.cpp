@@ -18,19 +18,30 @@ void studentpre::sp(const vector<int>& quality,const vector<department>& departm
 }
 
 void studentquality::sq(vector<int> &qua){
-    for(int i=0;i<quality_size;i++)qua.push_back(rand()%2+6);
+    for(int i=0;i<quality_size;i++)qua.push_back(rand()%5+3);
 }
 
 void departmentpre::dp(const vector<student> &stu,vector<int> &qua){
+    std::cout<<"dept pre here"<<std::endl;
     vector<student> students;
     bool check;
-    for(int i=0;i<stu.size();i++){
+    for(int i=1;i<stu.size();i++){
         check=1;
         if( stu[i].onpre(id)<0 || stu[i].onpre(id)>=pre_req)continue;
+        std::cout<<"--student "<<i<<std::endl;
+        for(int j=0;j<cutoff.size();j++){
+            std::cout<<"----"<<stu[i].quality[j]<<" "<<cutoff[j]<<' '<<std::endl;
+
+        }
         for(int j=0;j<cutoff.size()&&check;j++){
-            if(stu[i].preference[j]<cutoff[j])check=0;
+            if(stu[i].quality[j]<cutoff[j])check=0;
         }
         if(check)students.push_back(stu[i]);
+    }
+    std::cout<<"checking finished, "<<students.size()<<" left"<<std::endl;    
+    if(students.size()==0){
+        qua.clear();
+        return;
     }
     sort(students.begin(),students.end(),*cmp);
     qua.resize(stu.size());
