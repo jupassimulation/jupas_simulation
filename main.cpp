@@ -26,8 +26,8 @@ void init(){
         fin_dept >> departments_size;
     }
     else{
-        students_size=6;
-        departments_size=3;
+        students_size=100;
+        departments_size=25;
     }
     
     
@@ -41,7 +41,7 @@ void init(){
     vector<double> ce(5);
     for(int id=1;id<=departments_size;id++){
         if(!DEBUG)fin_dept >> tmp;
-        else tmp=2;
+        else tmp=3;
         for(int i=0;i<5;i++){
             co[i]=rand()%6;
             ce[i]=(rand()%1000)/1000.0;
@@ -73,23 +73,31 @@ void G_S(/*vector<student> students, vector<department> departments*/){
     while (true) {
         vector<department>::iterator d = departments.end();
         for (vector<department>::iterator it = departments.begin()+1 ; it != departments.end(); ++it) {
-            if (it->capacity > 0 && pointer[it->id] != d->preference.end()) {
+//            cout << "check dept " << it->id << endl;
+            if (it->capacity > 0 && pointer[it->id] != it->preference.end()) {
+//                cout << it->id << " send offer" << endl;
+//                cout << it->capacity <<' '<< *pointer[it->id]<< ' ' << (pointer[it->id] == d->preference.end()) << endl;
                 d = it;
                 break;
             }
+//            cout << "finish checking dept " << it->id << endl;
         }
         if (d==departments.end()) return;
 #define it (pointer[d->id])
         for (; it != d->preference.end() && d->capacity > 0; ++it) {
+//            cout << "send offer to " << *it << endl;
             if (students[*it].assign == 0) {
+//                cout << "no other offer - accept offer" << endl;
                 students[*it].assign = d->id;
                 d->capacity--;
             }
             else if (students[*it].prefer(d->id)) {
+//                cout << "reject " << students[*it].assign << endl;
                 departments[students[*it].assign].capacity++;
                 students[*it].assign = d->id;
                 d->capacity--;
             }
+//            cout << "finish sending offer to " << *it << endl;
         }
 #undef it
     }
@@ -99,11 +107,26 @@ int main(){
     srand(time(0));
     init();
     cout<<"hello"<<endl;
+    for(int i=1;i<=10;i++){
+        cout<<departments[i].id<<'\t';
+        for (vector<int>::iterator it=departments[i].preference.begin();it!=departments[i].preference.end();it++){
+            cout<<*it<<' ';
+        }
+        cout << endl;
+    }
+    for(int i=1;i<=100;i++){
+        cout<<students[i].id<<'\t';
+        for (vector<int>::iterator it=students[i].preference.begin();it!=students[i].preference.end();it++){
+            cout<<*it<<' ';
+        }
+        cout << endl;
+    }
     G_S();
-    for(int i=1;i<=students_size;i++){
+    cout << "end g-s" << endl;
+    for(int i=1;i<=100;i++){
         cout<<students[i].id<<'\t'<<students[i].assign<<endl;
     }
-    for(int i=0;i<departments_size;i++){
+    for(int i=1;i<=10;i++){
         cout << endl;
         cout<<departments[i].id<< '\t' <<departments[i].capacity<<endl;
     }

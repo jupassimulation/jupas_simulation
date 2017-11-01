@@ -2,7 +2,7 @@
 #define HEADER_H_
 
 
-#define DEBUG 1
+#define DEBUG 0
 
 struct studentpre;
 struct studentquality;

@@ -3,22 +3,23 @@ student::student(int Id,studentquality sq):id(Id){
     sq.sq(quality);
     sp=new studentpre;
     assign=0;
-    std::cout<<"this is a stu "<<id<<std::endl;
+//    std::cout<<"this is a stu "<<id<<std::endl;
 }
 
-student::student(const student& A):quality(A.quality),preference(A.preference),id(A.id){
+student::student(const student& A):quality(A.quality),preference(A.preference),id(A.id),assign(A.assign){
     sp=new studentpre(*A.sp);
 }
 
 student& student::operator=(const student& A){
     quality=A.quality,preference=A.preference; id=(A.id);
+    assign=A.assign;
     delete sp;    
     sp=new studentpre(*A.sp);
     return *this;
 }
 
 void student::set_preference(const vector<department>& departments){
-    std::cout<<"setting stu pre for stu "<<id<<std::endl;
+//    std::cout<<"setting stu pre for stu "<<id<<std::endl;
     sp->sp(quality,departments,preference);
 }
 
