@@ -13,7 +13,7 @@ student::student(const student& A):quality(A.quality),preference(A.preference),i
 student& student::operator=(const student& A){
     quality=A.quality,preference=A.preference; id=(A.id);
     assign=A.assign;
-    delete sp;    
+    delete sp;
     sp=new studentpre(*A.sp);
     return *this;
 }
