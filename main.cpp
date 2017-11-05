@@ -139,4 +139,15 @@ int main(){
         cout<<departments[i].id<< '\t' <<departments[i].capacity<<endl;
     }
     cout<<endl;
+    void result();
+    result();
+}
+
+void result(){
+    ofstream s_out("output/student_pre.csv");
+    for(int i=1;i<=students_size;i++){
+        for(int j=0;j<students[i].preference.size()-1;j++)
+            s_out<<students[i].preference[j]<<",";
+        s_out<<students[i].preference[students[i].preference.size()-1]<<endl;
+    }
 }
