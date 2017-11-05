@@ -5,17 +5,40 @@
 #include <ctime>
 #include <algorithm>
 
+#include <vector>
 
 using std::random_shuffle;
 
 extern int quality_size;
+extern int students_size;
+extern int departments_size;
+extern vector<double> pre_dis[20];//prefix sum
 
 void studentpre::sp(const vector<int>& quality,const vector<department>& departments,vector<int> &pre){
-//    departments contains departments[0]
-    pre.resize(departments.size()-1);
-    for(int i=0;i<pre.size();i++)pre[i]=i+1;
-    random_shuffle(pre.begin(),pre.end());
-    pre.resize(20);
+    int rand_lim=students_size;
+    bool flag=true;
+    int index;double tmp;
+    pre.resize(0);
+    for(int i=0;i<20;){
+        flag=true;
+        tmp=(rand()%(rand_lim*100))/100.0;
+        index=upper_bound(pre_dis[i].begin(),pre_dis[i].end(),tmp)-pre_dis[i].begin();
+        printf("tmp = %.2lf, index= %d \n",tmp,index);
+        if(index>departments_size){
+            break;
+        }
+        for(int j=0;j<pre.size()&&flag;j++){
+            if(pre[j]==index)flag=false;
+        }
+        if(!flag){
+            printf("dumped dept %d\n",index);
+            continue;
+        }
+        printf("added dept %d on %d\n",index,i);
+        i++;
+        pre.push_back(index);
+        rand_lim=(int)(pre_dis[i][pre_dis[i].size()-1]+1e-5);
+    }
 }
 
 void studentquality::sq(vector<int> &qua){
@@ -23,15 +46,15 @@ void studentquality::sq(vector<int> &qua){
 }
 
 void departmentpre::dp(const vector<student> &stu,vector<int> &qua){
-//    std::cout<<"dept pre here"<<std::endl;
+//std::cout<<"dept pre here"<<std::endl;
     vector<student> students;
     bool check;
     for(int i=1;i<stu.size();i++){
         check=1;
         if( stu[i].onpre(id)<0 || stu[i].onpre(id)>=pre_req)continue;
-//        std::cout<<"--student "<<i<<std::endl;
+//std::cout<<"--student "<<i<<std::endl;
         for(int j=0;j<cutoff.size();j++){
-//            std::cout<<"----"<<stu[i].quality[j]<<" "<<cutoff[j]<<' '<<std::endl;
+//std::cout<<"----"<<stu[i].quality[j]<<" "<<cutoff[j]<<' '<<std::endl;
 
         }
         for(int j=0;j<cutoff.size()&&check;j++){
@@ -39,7 +62,7 @@ void departmentpre::dp(const vector<student> &stu,vector<int> &qua){
         }
         if(check)students.push_back(stu[i]);
     }
-//    std::cout<<"checking finished, "<<students.size()<<" left"<<std::endl;    
+//std::cout<<"checking finished, "<<students.size()<<" left"<<std::endl;    
     if(students.size()==0){
         qua.clear();
         return;

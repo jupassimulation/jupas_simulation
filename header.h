@@ -13,5 +13,6 @@ class department;
 class student;
 
 #include <iostream>
+#include <cstdio>
 
 #endif

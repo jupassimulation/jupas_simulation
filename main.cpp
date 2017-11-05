@@ -13,6 +13,7 @@ using namespace std;
 int students_size;
 int departments_size;
 int quality_size = 5;
+vector<double> pre_dis[20];
 
 vector<student> students;
 vector<department> departments;
@@ -39,9 +40,16 @@ void init(){
     int tmp;
     vector<int> co(5);
     vector<double> ce(5);
+    for(int i=0;i<20;i++){
+        pre_dis[i].resize(departments_size+1);
+        pre_dis[i][0]=0;
+    }
     for(int id=1;id<=departments_size;id++){
-        if(!DEBUG)fin_dept >> tmp;
-        else tmp=3;
+        fin_dept >> tmp;
+        for(int i=0;i<20;i++){
+            fin_dept>>pre_dis[i][id];
+            pre_dis[i][id]+=pre_dis[i][id-1];
+        }
         for(int i=0;i<5;i++){
             co[i]=rand()%6;
             ce[i]=(rand()%1000)/1000.0;
