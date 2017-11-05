@@ -22,7 +22,7 @@ void studentpre::sp(const vector<int>& quality,const vector<department>& departm
     for(int i=0;i<20;){
         flag=true;
         tmp=(rand()%(rand_lim*100))/100.0;
-        index=lower_bound(pre_dis[i].begin(),pre_dis[i].end(),tmp)-pre_dis[i].begin();
+        index=upper_bound(pre_dis[i].begin(),pre_dis[i].end(),tmp)-pre_dis[i].begin();
         printf("tmp = %.2lf, index= %d \n",tmp,index);
         if(index>departments_size){
             break;
@@ -37,7 +37,7 @@ void studentpre::sp(const vector<int>& quality,const vector<department>& departm
         printf("added dept %d on %d\n",index,i);
         i++;
         pre.push_back(index);
-        rand_lim=(int)(pre_dis[i][pre_dis[i].size()-1]+1e-5);
+        rand_lim=(int)(pre_dis[i][pre_dis[i].size()-2]+1e-5);
     }
 }
 

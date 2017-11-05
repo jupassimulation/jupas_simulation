@@ -41,7 +41,7 @@ void init(){
     vector<int> co(5);
     vector<double> ce(5);
     for(int i=0;i<20;i++){
-        pre_dis[i].resize(departments_size+2);
+        pre_dis[i].resize(departments_size+1);
         pre_dis[i][0]=0;
     }
     for(int id=1;id<=departments_size;id++){
@@ -58,9 +58,9 @@ void init(){
         //cout << id << endl;
     }
     for(int i=0;i<20;i++){
-        if(i) pre_dis[i][departments_size+1]=
-            max(pre_dis[i][departments_size],pre_dis[i-1][departments_size+1]);
-        else pre_dis[i][departments_size+1]=students_size;
+        if(i) pre_dis[i].push_back(
+            max(pre_dis[i][departments_size],pre_dis[i-1][departments_size+1]));
+        else pre_dis[i].push_back(students_size);
     }
     for(int id=1;id<=students_size;id++){
         students[id].set_preference(departments);
