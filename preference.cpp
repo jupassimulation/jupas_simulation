@@ -35,9 +35,9 @@ void studentpre::sp(const vector<int>& quality,const vector<department>& departm
             continue;
         }
         printf("added dept %d on %d\n",index,i);
-        i++;
         pre.push_back(index);
-        rand_lim=(int)(pre_dis[i][pre_dis[i].size()-2]+1e-5);
+        rand_lim=(int)(pre_dis[i][pre_dis[i].size()-2]+1e-5);        
+        i++;
     }
 }
 
