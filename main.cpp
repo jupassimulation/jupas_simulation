@@ -41,7 +41,7 @@ void init(){
     vector<int> co(5);
     vector<double> ce(5);
     for(int i=0;i<20;i++){
-        pre_dis[i].resize(departments_size+1);
+        pre_dis[i].resize(departments_size+2);
         pre_dis[i][0]=0;
     }
     for(int id=1;id<=departments_size;id++){
@@ -56,6 +56,9 @@ void init(){
         }
         departments.push_back(department(id,tmp,co,ce));
         //cout << id << endl;
+    }
+    for(int i=0;i<20;i++){
+        pre_dis[i][departments_size+1]=(i?pre_dis[i-1][departments_size+1]:students_size);
     }
     for(int id=1;id<=students_size;id++){
         students[id].set_preference(departments);
@@ -145,9 +148,10 @@ int main(){
 
 void result(){
     ofstream s_out("output/student_pre.csv");
-    for(int i=1;i<=students_size;i++){
-        for(int j=0;j<students[i].preference.size()-1;j++)
-            s_out<<students[i].preference[j]<<",";
-        s_out<<students[i].preference[students[i].preference.size()-1]<<endl;
+    for(int i=1,j;i<=students_size;i++){
+        for(j=0;j<students[i].preference.size();j++)
+            s_out<<students[i].preference[j]<<(j<19?",":"\n");
+        for(;j<20;j++) s_out<<"0"<<(j<19?",":"\n");
     }
+    s_out.close();
 }
