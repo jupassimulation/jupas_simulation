@@ -22,7 +22,7 @@ void studentpre::sp(const vector<int>& quality,const vector<department>& departm
     for(int i=0;i<20;){
         flag=true;
         tmp=(rand()%(rand_lim*100))/100.0;
-        index=upper_bound(pre_dis[i].begin(),pre_dis[i].end(),tmp)-pre_dis[i].begin();
+        index=lower_bound(pre_dis[i].begin(),pre_dis[i].end(),tmp)-pre_dis[i].begin();
         printf("tmp = %.2lf, index= %d \n",tmp,index);
         if(index>departments_size){
             break;

@@ -58,7 +58,9 @@ void init(){
         //cout << id << endl;
     }
     for(int i=0;i<20;i++){
-        pre_dis[i][departments_size+1]=(i?pre_dis[i-1][departments_size+1]:students_size);
+        if(i) pre_dis[i][departments_size+1]=
+            max(pre_dis[i][departments_size],pre_dis[i-1][departments_size+1]);
+        else pre_dis[i][departments_size+1]=students_size;
     }
     for(int id=1;id<=students_size;id++){
         students[id].set_preference(departments);
