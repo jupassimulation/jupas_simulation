@@ -144,16 +144,38 @@ int main(){
         cout<<departments[i].id<< '\t' <<departments[i].capacity<<endl;
     }
     cout<<endl;
-    void result();
-    result();
+    void result_student_pre();
+    result_student_pre();
+    void result_student_matching();
+    result_student_matching();
+    void result_department_pre();
+    result_department_pre();
 }
 
-void result(){
+void result_student_pre(){
     ofstream s_out("output/student_pre.csv");
     for(int i=1,j;i<=students_size;i++){
         for(j=0;j<students[i].preference.size();j++)
             s_out<<students[i].preference[j]<<(j<19?",":"\n");
         for(;j<20;j++) s_out<<"0"<<(j<19?",":"\n");
+    }
+    s_out.close();
+}
+
+void result_student_matching(){
+    ofstream s_out("output/student_matching.csv");
+    for(int i=1;i<=students_size;i++){
+        s_out<<students[i].assign<<endl;
+    }
+    s_out.close();
+}
+
+void result_department_pre(){
+    ofstream s_out("output/department_pre.csv");
+    for(int i=1,j;i<=departments_size;i++){
+        for(j=0;j<departments[i].preference.size()-1;j++)
+            s_out<<departments[i].preference[j]<<',';
+        s_out<<departments[i].preference[j]<<endl;
     }
     s_out.close();
 }
