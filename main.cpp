@@ -58,6 +58,7 @@ void init(){
     for(int id=1;id<=students_size;id++){
         students[id].set_preference(departments);
     }
+    cout<< "finish stu preference" << endl;
     for(int id=1;id<=departments_size;id++){
         departments[id].set_preference(students);
     }
@@ -117,29 +118,29 @@ int main(int argc,char ** argv){
     srand(time(0));
     init();
     cout<<"hello"<<endl;
-    for(int i=1;i<=10;i++){
-        cout<<departments[i].id<<'\t';
-        for (vector<int>::iterator it=departments[i].preference.begin();it!=departments[i].preference.end();it++){
-            cout<<*it<<' ';
-        }
-        cout << endl;
-    }
-    for(int i=1;i<=100;i++){
-        cout<<students[i].id<<'\t';
-        for (vector<int>::iterator it=students[i].preference.begin();it!=students[i].preference.end();it++){
-            cout<<*it<<' ';
-        }
-        cout << endl;
-    }
+//    for(int i=1;i<=10;i++){
+//        cout<<departments[i].id<<'\t';
+//        for (vector<int>::iterator it=departments[i].preference.begin();it!=departments[i].preference.end();it++){
+//            cout<<*it<<' ';
+//        }
+//        cout << endl;
+//    }
+//    for(int i=1;i<=100;i++){
+//        cout<<students[i].id<<'\t';
+//        for (vector<int>::iterator it=students[i].preference.begin();it!=students[i].preference.end();it++){
+//            cout<<*it<<' ';
+//        }
+//        cout << endl;
+//    }
     G_S();
     cout << "end g-s" << endl;
-    for(int i=1;i<=100;i++){
-        cout<<students[i].id<<'\t'<<students[i].assign<<endl;
-    }
-    for(int i=1;i<=10;i++){
-        cout << endl;
-        cout<<departments[i].id<< '\t' <<departments[i].capacity<<endl;
-    }
+//    for(int i=1;i<=100;i++){
+//        cout<<students[i].id<<'\t'<<students[i].assign<<endl;
+//    }
+//    for(int i=1;i<=10;i++){
+//        cout << endl;
+//        cout<<departments[i].id<< '\t' <<departments[i].capacity<<endl;
+//    }
     cout<<endl;
     result_student_pre();
     result_student_matching();

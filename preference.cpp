@@ -24,7 +24,7 @@ void studentpre::sp(const vector<int>& quality,const vector<department>& departm
         flag=true;
         tmp=(rand()%(rand_lim*100))/100.0;
         index=upper_bound(pre_dis[i].begin(),pre_dis[i].end(),tmp)-pre_dis[i].begin();
-        printf("tmp = %.2lf, index= %d \n",tmp,index);
+//        printf("tmp = %.2lf, index= %d \n",tmp,index);
         if(index>departments_size){
             break;
         }
@@ -32,10 +32,10 @@ void studentpre::sp(const vector<int>& quality,const vector<department>& departm
             if(pre[j]==index)flag=false;
         }
         if(!flag){
-            printf("dumped dept %d\n",index);
+//            printf("dumped dept %d\n",index);
             continue;
         }
-        printf("added dept %d on %d\n",index,i);
+//        printf("added dept %d on %d\n",index,i);
         pre.push_back(index);
         rand_lim=(int)(pre_dis[i][pre_dis[i].size()-2]+1e-5);        
         i++;
@@ -70,13 +70,13 @@ void departmentpre::dp(const vector<student> &stu,vector<int> &qua){
     }
     sort(students.begin(),students.end(),*cmp);
     qua.resize(students.size());
-    for(int i=0;i<students.size();i++){
-        if(students[i].onpre(id)!=0){
-            for(int j=1;j<penalty;j++){
-                std::swap(students[i+j-1],students[i+j]);
-            }
-        }
-    }
+//    for(int i=0;i<students.size();i++){
+//        if(students[i].onpre(id)!=0){
+//            for(int j=1;j<penalty&&i+j<students.size();j++){
+//                std::swap(students[i+j-1],students[i+j]);
+//            }
+//        }
+//    }
     for(int i=0;i<students.size();i++)qua[i]=students[i].id;
 }
 
@@ -85,7 +85,7 @@ departmentpre::departmentpre(int i,vector<int> co,vector<double> ce,int r,int pe
     cmp=new departmentcmp(co,ce,r);
 }
 
-departmentpre::departmentpre(const departmentpre &A):id(A.id),cutoff(A.cutoff),coef(A.coef),pre_req(A.pre_req){
+departmentpre::departmentpre(const departmentpre &A):id(A.id),cutoff(A.cutoff),coef(A.coef),pre_req(A.pre_req),penalty(A.penalty){
     cmp=new departmentcmp(*A.cmp);
 }
 departmentpre::~departmentpre(){delete cmp;}
