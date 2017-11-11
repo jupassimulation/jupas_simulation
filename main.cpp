@@ -2,6 +2,7 @@
 #include "preference.h"
 #include "student.h"
 
+#include <string>
 #include <cstring>
 #include <iostream>
 #include <fstream>
@@ -13,25 +14,16 @@ using namespace std;
 int students_size;
 int departments_size;
 int quality_size = 5;
+int distri_total;
 vector<double> pre_dis[20];
 
 vector<student> students;
 vector<department> departments;
 
-ifstream fin_stu("data/input/student.txt");
+ifstream fin_pre("data/input/stuprefer.txt");
 ifstream fin_dept("data/input/department.txt");
 
 void init(){
-    if(!DEBUG){
-        fin_stu >> students_size;
-        fin_dept >> departments_size;
-    }
-    else{
-        students_size=100;
-        departments_size=25;
-    }
-    
-    
     students.push_back(student(0));
     departments.push_back(department(0,0x7fffffff,vector<int>(5,0),vector<double>(5,0)));
     for(int id=1;id<=students_size;id++){
@@ -47,16 +39,17 @@ void init(){
     for(int id=1;id<=departments_size;id++){
         fin_dept >> tmp;
         for(int i=0;i<20;i++){
-            fin_dept>>pre_dis[i][id];
+            fin_pre>>pre_dis[i][id];
             pre_dis[i][id]+=pre_dis[i][id-1];
         }
         for(int i=0;i<5;i++){
-            co[i]=rand()%6;
+            co[i]=0;
             ce[i]=(rand()%1000)/1000.0;
         }
         departments.push_back(department(id,tmp,co,ce));
         //cout << id << endl;
     }
+    fin_pre>>distri_total;
     for(int i=0;i<20;i++){
         if(i) pre_dis[i].push_back(
             max(pre_dis[i][departments_size],pre_dis[i-1][departments_size+1]));
@@ -116,7 +109,11 @@ void G_S(/*vector<student> students, vector<department> departments*/){
     }
 }
 
-int main(){
+
+
+
+int main(int argc,char ** argv){
+    process_arg(argc,argv);
     srand(time(0));
     init();
     cout<<"hello"<<endl;
@@ -144,38 +141,9 @@ int main(){
         cout<<departments[i].id<< '\t' <<departments[i].capacity<<endl;
     }
     cout<<endl;
-    void result_student_pre();
     result_student_pre();
-    void result_student_matching();
     result_student_matching();
-    void result_department_pre();
     result_department_pre();
 }
 
-void result_student_pre(){
-    ofstream s_out("output/student_pre.csv");
-    for(int i=1,j;i<=students_size;i++){
-        for(j=0;j<students[i].preference.size();j++)
-            s_out<<students[i].preference[j]<<(j<19?",":"\n");
-        for(;j<20;j++) s_out<<"0"<<(j<19?",":"\n");
-    }
-    s_out.close();
-}
 
-void result_student_matching(){
-    ofstream s_out("output/student_matching.csv");
-    for(int i=1;i<=students_size;i++){
-        s_out<<students[i].assign<<endl;
-    }
-    s_out.close();
-}
-
-void result_department_pre(){
-    ofstream s_out("output/department_pre.csv");
-    for(int i=1,j;i<=departments_size;i++){
-        for(j=0;j<departments[i].preference.size()-1;j++)
-            s_out<<departments[i].preference[j]<<',';
-        s_out<<departments[i].preference[j]<<endl;
-    }
-    s_out.close();
-}

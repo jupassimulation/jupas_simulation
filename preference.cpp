@@ -11,11 +11,12 @@ using std::random_shuffle;
 
 extern int quality_size;
 extern int students_size;
+extern int distri_total;
 extern int departments_size;
 extern vector<double> pre_dis[20];//prefix sum
 
 void studentpre::sp(const vector<int>& quality,const vector<department>& departments,vector<int> &pre){
-    int rand_lim=students_size;
+    int rand_lim=distri_total;
     bool flag=true;
     int index;double tmp;
     pre.resize(0);
@@ -69,10 +70,17 @@ void departmentpre::dp(const vector<student> &stu,vector<int> &qua){
     }
     sort(students.begin(),students.end(),*cmp);
     qua.resize(students.size());
+    for(int i=0;i<students.size();i++){
+        if(students[i].onpre(id)!=0){
+            for(int j=1;j<penalty;j++){
+                std::swap(students[i+j-1],students[i+j]);
+            }
+        }
+    }
     for(int i=0;i<students.size();i++)qua[i]=students[i].id;
 }
 
-departmentpre::departmentpre(int i,vector<int> co,vector<double> ce,int r):id(i),cutoff(co),coef(ce),pre_req(r)
+departmentpre::departmentpre(int i,vector<int> co,vector<double> ce,int r,int pen):id(i),cutoff(co),coef(ce),pre_req(r),penalty(pen)
 {
     cmp=new departmentcmp(co,ce,r);
 }

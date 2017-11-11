@@ -24,11 +24,12 @@ struct departmentcmp{
 
 struct departmentpre{
     int id;
+    int penalty;
     vector<int> cutoff;
     vector<double> coef;
     int pre_req;
     departmentcmp *cmp;
-    departmentpre(int i,vector<int> co,vector<double> ce,int r=20);
+    departmentpre(int i,vector<int> co,vector<double> ce,int r,int pen);
     departmentpre(const departmentpre &);
     virtual void dp(const vector<student>&,vector<int> &);
     virtual ~departmentpre();
