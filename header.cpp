@@ -47,6 +47,15 @@ void result_department_pre(){
     s_out.close();
 }
 
+void result_dept_empty(){
+    using namespace std;
+    ofstream s_out("data/statistics/department_empty_seats.csv");
+    for(int i=1;i<=departments_size;i++){
+        s_out<<departments[i].capacity<<endl;
+    }
+    s_out.close();
+}
+
 #include <string>
 void process_arg(int argc,char ** argv){
     using std::string;
