@@ -15,6 +15,8 @@ int students_size;
 int departments_size;
 int quality_size = 5;
 int distri_total;
+int pena=0;
+int preferreq=20;
 vector<double> pre_dis[20];
 
 vector<student> students;
@@ -46,7 +48,8 @@ void init(){
             co[i]=0;
             ce[i]=(rand()%1000)/1000.0;
         }
-        departments.push_back(department(id,tmp,co,ce));
+        if(id==1) departments.push_back(department(id,tmp,co,ce,preferreq,pena));
+        else departments.push_back(department(id,tmp,co,ce));
         //cout << id << endl;
     }
     fin_pre>>distri_total;

@@ -68,15 +68,20 @@ void departmentpre::dp(const vector<student> &stu,vector<int> &qua){
         qua.clear();
         return;
     }
+    vector<bool> checked(students_size,false);
     sort(students.begin(),students.end(),*cmp);
     qua.resize(students.size());
-//    for(int i=0;i<students.size();i++){
-//        if(students[i].onpre(id)!=0){
-//            for(int j=1;j<penalty&&i+j<students.size();j++){
-//                std::swap(students[i+j-1],students[i+j]);
-//            }
-//        }
-//    }
+    for(int i=0;i<students.size();){
+        if(!checked[students[i].id] && students[i].onpre(id)!=0){
+            checked[students[i].id]=true;
+            if(penalty>0)std::cout<<"moving student "<<students[i].id<<" to "<<penalty<< " lower"<<std::endl;
+            for(int j=1;j<penalty&&i+j<students.size();j++){
+                std::swap(students[i+j-1],students[i+j]);
+            }
+            continue;
+        }
+        i++;
+    }
     for(int i=0;i<students.size();i++)qua[i]=students[i].id;
 }
 

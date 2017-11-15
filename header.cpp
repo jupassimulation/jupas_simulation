@@ -9,6 +9,7 @@ int DEBUG=0;
 extern int students_size;
 extern int departments_size;
 extern int quality_size;
+extern int pena,preferreq;
 extern std::vector<double> pre_dis[20];
 
 extern std::vector<student> students;
@@ -67,6 +68,14 @@ void process_arg(int argc,char ** argv){
             fin_dept.close();
             fin_dept.open(argv[i]+8);
             printf("opening dept file \"%s\"\n",argv[i]+8);
+        }
+        if(string(argv[i]).find("cutoff_p=")==0){
+            sscanf(argv[i]+9,"%d",&preferreq);
+            printf("setting dept 1 cutoff of preference list to be %d\n",preferreq);
+        }
+        if(string(argv[i]).find("penalty=")==0){
+            sscanf(argv[i]+8,"%d",&pena);
+            printf("setting dept 1 to have a penalty of %d on ranking if stu do not choose it as their first choice",pena);
         }
     }
 }
