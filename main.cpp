@@ -166,7 +166,7 @@ int main(int argc,char ** argv){
     result_student_pre();
     result_student_matching();
     result_department_pre();
-    //cout<<students[100].
+    result_dept_empty();
 }
 
 
