@@ -76,11 +76,11 @@ void init(){
         departments[id].set_preference(students);
     }
     if(ALL_SAME){
-        for(int i=2;i<=20;i++)
+        for(int i=2;i<=departments_size;i++)
             departments[i]=departments[1];
     }
     if(ALL_RANDOM){        
-        for(int i=1;i<=20;i++)
+        for(int i=1;i<=departments_size;i++)
             HARDCODE::RANDOM(departments[i].preference);
     }
 }
