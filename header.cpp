@@ -17,7 +17,7 @@ extern std::ifstream fin_pre,fin_dept;
 
 void result_student_pre(){
     using namespace std;
-    ofstream s_out("output/student_pre.csv",ios_base::app);
+    ofstream s_out("output/student_pre.csv");//,ios_base::app);
     for(int i=1,j;i<=students_size;i++){
         for(j=0;j<students[i].preference.size();j++)
             s_out<<students[i].preference[j]<<(j<19?",":"\n");
@@ -29,7 +29,7 @@ void result_student_pre(){
 
 void result_student_matching(){
     using namespace std;
-    ofstream s_out("output/student_matching.csv",ios_base::app);
+    ofstream s_out("output/student_matching.csv");//,ios_base::app);
     for(int i=1;i<=students_size;i++){
         s_out<<students[i].assign<<endl;
     }
@@ -39,7 +39,7 @@ void result_student_matching(){
 
 void result_department_pre(){
     using namespace std;
-    ofstream s_out("output/department_pre.csv",ios_base::app);
+    ofstream s_out("output/department_pre.csv");//,ios_base::app);
     for(int i=1,j;i<=departments_size;i++){
         for(j=0;j<departments[i].preference.size()-1;j++)
             s_out<<departments[i].preference[j]<<',';
