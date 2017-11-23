@@ -19,6 +19,7 @@ public:
     department(int Id,int cap,vector<int> cutoff,vector<double> coef,int pre_req=20,int pen=0);
     department(const department &);
     void set_preference(const vector<student>&);
+    department& operator=(const department&);
     ~department();
     //void set_preference_func(void Preference_func(const vector<student>&,vector<int> &));
 };

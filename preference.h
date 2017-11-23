@@ -4,6 +4,9 @@
 #include "header.h"
 #include <vector>
 
+#define ALL_SAME 1
+#define ALL_RANDOM 0
+
 using std::vector;
 
 struct studentpre{

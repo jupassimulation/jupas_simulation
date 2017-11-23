@@ -2,12 +2,7 @@
 #include "preference.h"
 #include "student.h"
 
-#include <string>
-#include <cstring>
-#include <iostream>
-#include <fstream>
-#include <cstdlib>
-#include <ctime>
+#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -25,6 +20,19 @@ vector<department> departments;
 ifstream fin_pre("data/input/stuprefer.txt");
 ifstream fin_dept("data/input/department.txt");
 
+namespace HARDCODE{
+    //set<int> all;
+    void RANDOM(vector<int> &V){
+        random_shuffle(V.begin(),V.end());
+        //int tmp;
+        //set<int> s=all;
+        //V.clear();
+        //while(!s.empty()){
+        //    tmp=rand()%s.size();
+        //}
+    }
+}
+
 void init(){
     students.push_back(student(0));
     departments.push_back(department(0,0x7fffffff,vector<int>(5,0),vector<double>(5,0)));
@@ -38,6 +46,7 @@ void init(){
         pre_dis[i].resize(departments_size+1);
         pre_dis[i][0]=0;
     }
+
     for(int id=1;id<=departments_size;id++){
         fin_dept >> tmp;
         for(int i=0;i<20;i++){
@@ -58,12 +67,21 @@ void init(){
             max(pre_dis[i][departments_size],pre_dis[i-1][departments_size+1]));
         else pre_dis[i].push_back(students_size);
     }
+
     for(int id=1;id<=students_size;id++){
         students[id].set_preference(departments);
     }
     cout<< "finish stu preference" << endl;
     for(int id=1;id<=departments_size;id++){
         departments[id].set_preference(students);
+    }
+    if(ALL_SAME){
+        for(int i=2;i<=20;i++)
+            departments[i]=departments[1];
+    }
+    if(ALL_RANDOM){        
+        for(int i=1;i<=20;i++)
+            HARDCODE::RANDOM(departments[i].preference);
     }
 }
 
@@ -118,7 +136,7 @@ void G_S(/*vector<student> students, vector<department> departments*/){
 
 int main(int argc,char ** argv){
     process_arg(argc,argv);
-    srand(time(0));
+    srand(47);
     init();
     cout<<"hello"<<endl;
 //    for(int i=1;i<=10;i++){
@@ -148,6 +166,7 @@ int main(int argc,char ** argv){
     result_student_pre();
     result_student_matching();
     result_department_pre();
+    //cout<<students[100].
 }
 
 

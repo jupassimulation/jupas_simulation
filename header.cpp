@@ -2,8 +2,7 @@
 #include "student.h"
 #include "department.h"
 
-#include <vector>
-#include <fstream>
+#include <bits/stdc++.h>
 
 int DEBUG=0;
 extern int students_size;
@@ -18,32 +17,35 @@ extern std::ifstream fin_pre,fin_dept;
 
 void result_student_pre(){
     using namespace std;
-    ofstream s_out("output/student_pre.csv");
+    ofstream s_out("output/student_pre.csv",ios_base::app);
     for(int i=1,j;i<=students_size;i++){
         for(j=0;j<students[i].preference.size();j++)
             s_out<<students[i].preference[j]<<(j<19?",":"\n");
         for(;j<20;j++) s_out<<"0"<<(j<19?",":"\n");
     }
+    s_out<<endl;
     s_out.close();
 }
 
 void result_student_matching(){
     using namespace std;
-    ofstream s_out("output/student_matching.csv");
+    ofstream s_out("output/student_matching.csv",ios_base::app);
     for(int i=1;i<=students_size;i++){
         s_out<<students[i].assign<<endl;
     }
+    s_out<<endl;
     s_out.close();
 }
 
 void result_department_pre(){
     using namespace std;
-    ofstream s_out("output/department_pre.csv");
+    ofstream s_out("output/department_pre.csv",ios_base::app);
     for(int i=1,j;i<=departments_size;i++){
         for(j=0;j<departments[i].preference.size()-1;j++)
             s_out<<departments[i].preference[j]<<',';
         s_out<<departments[i].preference[j]<<endl;
     }
+    s_out<<endl;
     s_out.close();
 }
 

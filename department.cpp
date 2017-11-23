@@ -11,6 +11,15 @@ department::department(const department& A):preference(A.preference),id(A.id),ca
 //    std::cout<<"copy dept finished "<<id<<std::endl;
 }
 
+department& department::operator=(const department& A){
+    preference=A.preference,id=A.id,capacity=A.capacity;
+//    std::cout<<"copying dept "<<id<<std::endl;
+    delete dp;
+    dp=new departmentpre(*A.dp);
+    return *this;
+//    std::cout<<"copy dept finished "<<id<<std::endl;
+}
+
 void department::set_preference(const vector<student>& students){
 //    std::cout<<"setting pre for dept "<<id<<std::endl;
     dp->dp(students,preference);
