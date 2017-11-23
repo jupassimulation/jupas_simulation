@@ -136,6 +136,10 @@ void G_S(/*vector<student> students, vector<department> departments*/){
 
 int main(int argc,char ** argv){
     process_arg(argc,argv);
+<<<<<<< Updated upstream
+=======
+//    srand(time(0));
+>>>>>>> Stashed changes
     srand(47);
     init();
     cout<<"hello"<<endl;
