@@ -33,7 +33,6 @@ void result_student_matching(){
     for(int i=1;i<=students_size;i++){
         s_out<<students[i].assign<<endl;
     }
-    s_out<<endl;
     s_out.close();
 }
 
@@ -45,7 +44,6 @@ void result_department_pre(){
             s_out<<departments[i].preference[j]<<',';
         s_out<<departments[i].preference[j]<<endl;
     }
-    s_out<<endl;
     s_out.close();
 }
 
