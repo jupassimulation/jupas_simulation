@@ -3,6 +3,8 @@
 
 
 extern int DEBUG;
+#define ALL_SAME 1
+#define ALL_RANDOM 0
 
 struct studentpre;
 struct studentquality;
